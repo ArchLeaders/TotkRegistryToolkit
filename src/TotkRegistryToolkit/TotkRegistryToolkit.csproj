@@ -7,6 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Cocona.Lite" Version="2.2.0" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TotkRegistryToolkit.SourceGenerator\TotkRegistryToolkit.SourceGenerator.csproj" OutputItemType="Analyzer" />

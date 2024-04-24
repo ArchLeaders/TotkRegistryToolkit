@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+
+  <ItemGroup>
+    <ProjectReference Include="..\TotkRegistryToolkit.SourceGenerator\TotkRegistryToolkit.SourceGenerator.csproj" OutputItemType="Analyzer" />
+  </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 ﻿using Cocona;
 using TotkRegistryToolkit.Services;
-using TotkRegistryToolkit.Windows;
+using TotkRegistryToolkit.Win32;
 
 namespace TotkRegistryToolkit.Components;
 

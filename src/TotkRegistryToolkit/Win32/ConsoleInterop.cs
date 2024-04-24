@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace TotkRegistryToolkit.Windows;
+namespace TotkRegistryToolkit.Win32;
 
 public enum WindowMode : int { Hidden = 0, Visible = 5 }
 

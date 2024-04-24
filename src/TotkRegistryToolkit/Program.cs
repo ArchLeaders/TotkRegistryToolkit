@@ -10,4 +10,5 @@ Console.WriteLine($"""
 
 CoconaLiteApp app = CoconaLiteApp.Create(args);
 app.AddCommands<ActionCommands>();
+app.AddCommands<EditCommands>();
 await app.RunAsync();

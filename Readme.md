@@ -4,6 +4,8 @@
 
 Creates Windows 10 context menu items for quick conversion actions.
 
+Works on Windows 11, however the new context menu will be in sub-context menu.
+
 - [TotK Registry Toolkit](#totk-registry-toolkit)
 - [Commands](#commands)
 - [Install](#install)

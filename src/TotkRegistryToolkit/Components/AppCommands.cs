@@ -8,7 +8,7 @@ public class AppCommands
     public static void Initialize()
     {
         string? pathEnv = Environment.GetEnvironmentVariable("PATH");
-        Environment.SetEnvironmentVariable("PATH", $"{pathEnv};{Config.DataFolder}");
+        Environment.SetEnvironmentVariable("PATH", $"{pathEnv};{Config.DataFolder}", EnvironmentVariableTarget.Machine);
 
         EditCommands.Apply();
     }

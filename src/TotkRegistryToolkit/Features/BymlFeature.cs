@@ -14,30 +14,10 @@ public class BymlFeature : IFeature
 {
     public async static ValueTask Execute(string[] args)
     {
-        switch (args.Length) {
-            case 0:
-                break;
-            case 1: {
-                ProcessByml(args[0]);
-                break;
-            }
-            case < 13: {
-                foreach (var arg in args) {
-                    ProcessByml(arg);
-                }
-                break;
-            }
-            default: {
-                await Parallel.ForEachAsync(args, (arg, cancellationToken) => {
-                    ProcessByml(arg);
-                    return ValueTask.CompletedTask;
-                });
-                break;
-            }
-        }
+        await WorkloadService.DelegateTasks(args, CancellationToken.None, ProcessByml);
     }
 
-    private static void ProcessByml(string path)
+    private static ValueTask ProcessByml(string path, CancellationToken _)
     {
         using FileStream fs = File.OpenRead(path);
         int size = Convert.ToInt32(fs.Length);
@@ -51,6 +31,8 @@ public class BymlFeature : IFeature
         if (Path.GetExtension(path) is ".yml" or ".yaml") {
             ToByml(data, path);
         }
+
+        return ValueTask.CompletedTask;
     }
 
     private static void ToYaml(ArraySegment<byte> data, string path)

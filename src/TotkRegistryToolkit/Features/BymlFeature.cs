@@ -23,6 +23,7 @@ public class BymlFeature : IFeature
         int size = Convert.ToInt32(fs.Length);
         using ArraySegmentOwner<byte> buffer = ArraySegmentOwner<byte>.Allocate(size);
         ArraySegment<byte> data = buffer.Segment;
+        fs.Read(data);
 
         if (data.AsSpan().Read<short>() is 0x4259 or 0x5942) {
             ToYaml(data, path);

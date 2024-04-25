@@ -2,7 +2,7 @@
 
 public class WorkloadService
 {
-    public static async ValueTask DelegateTasks(string[] args, CancellationToken cancellationToken, Func<string, CancellationToken, ValueTask> process)
+    public static async ValueTask DelegateTasks(string[] args, Func<string, CancellationToken, ValueTask> process, CancellationToken cancellationToken)
     {
         switch (args.Length) {
             case 0:

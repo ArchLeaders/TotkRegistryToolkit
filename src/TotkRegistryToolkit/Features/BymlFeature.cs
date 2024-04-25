@@ -14,7 +14,7 @@ public class BymlFeature : IFeature
 {
     public async static ValueTask Execute(string[] args)
     {
-        await WorkloadService.DelegateTasks(args, CancellationToken.None, ProcessByml);
+        await WorkloadService.DelegateTasks(args, ProcessByml, CancellationToken.None);
     }
 
     private static ValueTask ProcessByml(string path, CancellationToken _)

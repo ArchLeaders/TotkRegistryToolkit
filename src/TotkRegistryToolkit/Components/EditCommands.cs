@@ -1,6 +1,8 @@
 ﻿using Cocona;
 using System.Text.Json;
+using TotkRegistryToolkit.Attributes;
 using TotkRegistryToolkit.Services;
+using TotkRegistryToolkit.Win32;
 
 namespace TotkRegistryToolkit.Components;
 
@@ -12,7 +14,16 @@ public class EditCommands
     public static void Apply()
     {
         Dictionary<string, bool> metadata = GetMetadata();
-        // TODO: Apply to registry
+        foreach ((string name, FeatureAttribute feature) in FeatureService.Features) {
+            switch (metadata[name]) {
+                case true:
+                    RegistryInterop.Create(feature);
+                    break;
+                case false:
+                    RegistryInterop.Delete(feature);
+                    break;
+            }
+        }
     }
 
     [Command("reset", Description = "Reset all features to the default state")]
@@ -31,17 +42,17 @@ public class EditCommands
 
         if (enable) {
             metadata[name] = true;
+            RegistryInterop.Create(FeatureService.Features[name]);
         }
 
         if (disable) {
             metadata[name] = false;
+            RegistryInterop.Delete(FeatureService.Features[name]);
         }
-
-        Console.WriteLine($"{name}: {GetStateDescription(state)}");
 
         SaveMetadata(metadata);
 
-        // TODO: Apply to registry
+        Console.WriteLine($"{name}: {GetStateDescription(state)}");
     }
 
     [Command("list", Aliases = ["ls"], Description = "List every feature")]
@@ -54,9 +65,9 @@ public class EditCommands
 
         Dictionary<string, bool> metadata = GetMetadata();
 
-        foreach (var (name, description) in FeatureService.Features) {
-            bool state = metadata.GetValueOrDefault(name, true);
-            Console.WriteLine($"- {name}: {description} [{GetStateDescription(state)}]");
+        foreach ((_, FeatureAttribute feature) in FeatureService.Features) {
+            bool state = metadata.GetValueOrDefault(feature.Name, true);
+            Console.WriteLine($"- {feature.Name}: {feature.Description} [{GetStateDescription(state)}]");
         }
     }
 

@@ -81,9 +81,22 @@ public class FeatureGenerator : IIncrementalGenerator
             switchExpressionBuilder.AppendLine($"\"{name}\" => global::{symbol.ContainingNamespace}.{symbol.Name}.Execute(args),");
             switchExpressionBuilder.Append("                ");
 
-            object? description = attribute.ConstructorArguments[1].Value;
-            featureListBuilder.AppendLine($"(\"{name}\", \"{description}\")");
-            switchExpressionBuilder.Append("            ");
+            featureListBuilder.Append($"{{\"{name}\", new global::{FEATURE_ATTRIBUTE_TYPE_NAME}(\"{name}\"");
+            foreach (TypedConstant arg in attribute.ConstructorArguments.AsSpan().Slice(1)) {
+                switch (arg.Kind) {
+                    case TypedConstantKind.Array:
+                        if (arg.Values.Length > 0) {
+                            featureListBuilder.Append($", [\"{string.Join("\", \"", arg.Values.Select(x => x.Value))}\"]");
+                        }
+                        break;
+                    default:
+                        featureListBuilder.Append($", \"{arg.Value}\"");
+                        break;
+                }
+            }
+
+            featureListBuilder.AppendLine(")},");
+            featureListBuilder.Append("            ");
         }
 
         string code = $$"""
@@ -93,9 +106,11 @@ public class FeatureGenerator : IIncrementalGenerator
             {
                 public static partial class FeatureService
                 {
-                    public static readonly (string, string)[] Features = [
-                        {{featureListBuilder}}
-                    ];
+                    public static readonly global::System.Collections.Frozen.FrozenDictionary<string, global::{{FEATURE_ATTRIBUTE_TYPE_NAME}}> Features = global::System.Collections.Frozen.FrozenDictionary.ToFrozenDictionary(
+                        new global::System.Collections.Generic.Dictionary<string, global::{{FEATURE_ATTRIBUTE_TYPE_NAME}}> {
+                            {{featureListBuilder}}
+                        }
+                    );
 
                     public static partial async ValueTask Execute(global::System.String name, global::System.String[] args)
                     {

@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BymlLibrary" Version="2.1.11" />
     <PackageReference Include="Cocona.Lite" Version="2.2.0" />
   </ItemGroup>

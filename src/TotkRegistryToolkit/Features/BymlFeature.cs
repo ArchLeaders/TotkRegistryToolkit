@@ -9,7 +9,7 @@ using TotkRegistryToolkit.Services;
 
 namespace TotkRegistryToolkit.Features;
 
-[Feature("BYML", "Converts BYML to YAML and vice versa.")]
+[Feature("BYML", "Convert BYML/YAML", "*", "byml.ico")]
 public class BymlFeature : IFeature
 {
     public async static ValueTask Execute(string[] args)

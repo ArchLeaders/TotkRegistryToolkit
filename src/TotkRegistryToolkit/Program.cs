@@ -1,6 +1,9 @@
 ﻿using Cocona;
 using System.Reflection;
+using System.Runtime.Versioning;
 using TotkRegistryToolkit.Components;
+
+[assembly: SupportedOSPlatform("windows")]
 
 Console.WriteLine($"""
     TotK Registry Toolkit [Version {Assembly.GetExecutingAssembly().GetName().Version?.ToString(3) ?? "???"}]

@@ -8,7 +8,7 @@ namespace TotkRegistryToolkit.Components;
 
 public class EditCommands
 {
-    private static readonly string _path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), nameof(TotkRegistryToolkit), "Metadata.json");
+    private static readonly string _path = Path.Combine(Config.DataFolder, "Metadata.json");
 
     [Command("apply", Aliases = ["refresh"], Description = "Apply all features to the registry")]
     public static void Apply()

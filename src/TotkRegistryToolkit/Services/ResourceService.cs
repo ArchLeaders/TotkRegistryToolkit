@@ -5,7 +5,7 @@ namespace TotkRegistryToolkit.Services;
 
 public class ResourceService
 {
-    private static readonly string _path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), nameof(TotkRegistryToolkit), "Assets");
+    private static readonly string _path = Path.Combine(Config.DataFolder, "Assets");
 
     public static bool TryExtractIcon(string name, [MaybeNullWhen(false)] out string output)
     {

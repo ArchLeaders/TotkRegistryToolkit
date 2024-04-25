@@ -41,12 +41,12 @@ public class FeatureCommands
         bool state = true;
 
         if (enable) {
-            metadata[feature] = true;
+            state = metadata[feature] = true;
             RegistryInterop.Create(FeatureService.Features[feature]);
         }
 
         if (disable) {
-            metadata[feature] = false;
+            state = metadata[feature] = false;
             RegistryInterop.Delete(FeatureService.Features[feature]);
         }
 

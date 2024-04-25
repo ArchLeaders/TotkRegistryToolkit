@@ -17,22 +17,27 @@ Works on Windows 11, however the new context menu will be in sub-context menu.
 
 # Commands
 
+> [!IMPORTANT]
+> This tool edits to the registry and requires administrative permissions.
+
 ```
-...
+tkrt.exe --help
 ```
+
+~~You thought I was actually going to write documentation?~~ 😂🤣
 
 # Install
 
 ## Windows (x64)
 
 - Download and install the latest [.NET](https://dotnet.microsoft.com/en-us/download/dotnet/latest) runtime for Windows x64.
-- Download the [latest win-x64 setup script](https://github.com/ArchLeaders/TotkRegistryToolkit/releases/latest/download/Setup-win-x64.zip).
+- Download the [latest win-x64 setup script](https://github.com/ArchLeaders/TotkRegistryToolkit/releases/latest/download/Setup-win-x64.bat).
 - Run the setup script as adminastrator and wait for the install to complete.
 
 ## Windows (Arm64)
 
 - Download and install the latest [.NET](https://dotnet.microsoft.com/en-us/download/dotnet/latest) runtime for Windows Arm64.
-- Download the [latest arm-x64 setup script](https://github.com/ArchLeaders/TotkRegistryToolkit/releases/latest/download/Setup-win-arm64.zip).
+- Download the [latest arm-x64 setup script](https://github.com/ArchLeaders/TotkRegistryToolkit/releases/latest/download/Setup-win-arm64.bat).
 - Run the setup script as adminastrator and wait for the install to complete.
 
 ## Build From Source

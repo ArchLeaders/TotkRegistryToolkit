@@ -10,6 +10,6 @@ public class AppCommands
         string? pathEnv = Environment.GetEnvironmentVariable("PATH");
         Environment.SetEnvironmentVariable("PATH", $"{pathEnv};{Config.DataFolder}", EnvironmentVariableTarget.Machine);
 
-        EditCommands.Apply();
+        FeatureCommands.Apply();
     }
 }

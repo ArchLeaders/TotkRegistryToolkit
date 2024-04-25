@@ -6,7 +6,7 @@ using TotkRegistryToolkit.Win32;
 
 namespace TotkRegistryToolkit.Components;
 
-public class EditCommands
+public class FeatureCommands
 {
     private static readonly string _path = Path.Combine(Config.DataFolder, "Metadata.json");
 
@@ -33,26 +33,26 @@ public class EditCommands
         Apply();
     }
 
-    [Command("feature", Aliases = ["feat"], Description = "Get or set a registry feature")]
-    public static void Feature([Argument] string name, [Option(Description = "Enable the feature", StopParsingOptions = true)] bool enable, [Option(Description = "Disable the feature", StopParsingOptions = true)] bool disable)
+    [Command("update", Description = "Enable or disable a feature")]
+    public static void Update([Argument] string feature, [Option(Description = "Enable the feature", StopParsingOptions = true)] bool enable, [Option(Description = "Disable the feature", StopParsingOptions = true)] bool disable)
     {
         Dictionary<string, bool> metadata = GetMetadata();
 
         bool state = true;
 
         if (enable) {
-            metadata[name] = true;
-            RegistryInterop.Create(FeatureService.Features[name]);
+            metadata[feature] = true;
+            RegistryInterop.Create(FeatureService.Features[feature]);
         }
 
         if (disable) {
-            metadata[name] = false;
-            RegistryInterop.Delete(FeatureService.Features[name]);
+            metadata[feature] = false;
+            RegistryInterop.Delete(FeatureService.Features[feature]);
         }
 
         SaveMetadata(metadata);
 
-        Console.WriteLine($"{name}: {GetStateDescription(state)}");
+        Console.WriteLine($"{feature}: {GetStateDescription(state)}");
     }
 
     [Command("list", Aliases = ["ls"], Description = "List every feature")]

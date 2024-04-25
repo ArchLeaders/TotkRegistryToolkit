@@ -15,7 +15,7 @@ public class FeatureCommands
     {
         Dictionary<string, bool> metadata = GetMetadata();
         foreach ((string name, FeatureAttribute feature) in FeatureService.Features) {
-            switch (metadata[name]) {
+            switch (metadata.GetValueOrDefault(name, true)) {
                 case true:
                     RegistryInterop.Create(feature);
                     break;

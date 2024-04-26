@@ -17,10 +17,11 @@
   <ItemGroup>
     <PackageReference Include="BymlLibrary" Version="2.1.11" />
     <PackageReference Include="Cocona.Lite" Version="2.2.0" />
-    <PackageReference Include="Totk.Common" Version="1.1.2" />
+    <PackageReference Include="TotkCommon" Version="1.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TotkRegistryToolkit.SourceGenerator\TotkRegistryToolkit.SourceGenerator.csproj" OutputItemType="Analyzer" />
   </ItemGroup>
+
 </Project>

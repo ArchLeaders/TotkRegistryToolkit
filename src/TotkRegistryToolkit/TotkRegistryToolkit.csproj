@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Tkmm.BymlLibrary" Version="1.0.1" />
+    <PackageReference Include="Tkmm.BymlLibrary" Version="1.0.3" />
     <PackageReference Include="Cocona.Lite" Version="2.2.0" />
     <PackageReference Include="TotkCommon" Version="1.2.4" />
   </ItemGroup>

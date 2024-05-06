@@ -1,5 +1,5 @@
 ﻿using Cocona;
-using TotkRegistryToolkit.Models;
+using TotkCommon;
 
 namespace TotkRegistryToolkit.Components;
 
@@ -20,8 +20,8 @@ public class AppCommands
         [Command("set-game-path")]
         public static void SetGamePath([Argument] string gamePath)
         {
-            TotkConfig.Shared.GamePath = gamePath;
-            TotkConfig.Shared.Save();
+            Totk.Config.GamePath = gamePath;
+            Totk.Config.Save();
         }
     }
 }
